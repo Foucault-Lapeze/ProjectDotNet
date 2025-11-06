@@ -8,6 +8,7 @@ namespace ProjetDotNet.Controller;
     [ApiController]
     public class VoitureDTOController : ControllerBase
     {
+        // Création de voiture pour pouvoir tester directement 
         private static readonly List<Voiture> voitures = new List<Voiture>
         {
             new Voiture { Id = 1, Marque = "Peugeot", Modele = "208", Immatriculation = "AB-123-CD", AdressePropriétaire = "Paris" },
@@ -30,7 +31,7 @@ namespace ProjetDotNet.Controller;
         }
         
         // GET: GetById
-        [HttpGet("voitureById")]
+        [HttpGet("voitureById/{id}")]
         public ActionResult<IEnumerable<Voiture.VoitureDto>> GetById(int id)
         {
             var voiture = voitures.Find(v => v.Id == id);
@@ -61,17 +62,7 @@ namespace ProjetDotNet.Controller;
                 .Where(v =>
                     v.Marque.Contains(recherche, StringComparison.OrdinalIgnoreCase) ||
                     v.Modele.Contains(recherche, StringComparison.OrdinalIgnoreCase) ||
-                    v.Immatriculation.Contains(recherche, StringComparison.OrdinalIgnoreCase))
-                .Select(v => new Voiture.VoitureDto
-                {
-                    Id = v.Id,
-                    Marque = v.Marque,
-                    Modele = v.Modele
-                })
-                .ToList();
-
-            if (!resultats.Any())
-                return NotFound("Aucune voiture ne correspond à la recherche.");
+                    v.Immatriculation.Contains(recherche, StringComparison.OrdinalIgnoreCase));
 
             return Ok(resultats);
         }
