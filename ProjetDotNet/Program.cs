@@ -9,7 +9,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<TodoContext>(opt => opt.UseInMemoryDatabase("TodoListBDD"));
+builder.Services.AddDbContext<BDDContext>(opt => opt.UseInMemoryDatabase("TodoListBDD"));
+builder.Services.AddDbContext<BDDContext>(opt => opt.UseInMemoryDatabase("VoitureListBDD"));
 
 var app = builder.Build();
 
