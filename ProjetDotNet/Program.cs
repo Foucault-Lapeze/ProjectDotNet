@@ -1,3 +1,4 @@
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using ProjetDotNet.Models;
@@ -23,6 +24,10 @@ builder.Services.AddSwaggerGen(c =>
             Url = new Uri("https://google.com"),
         }
     });
+    // Ajout de la lecture des commentaires XML
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    c.IncludeXmlComments(xmlPath);
 });
 
 builder.Services.AddDbContext<BDDContext>(opt => opt.UseInMemoryDatabase("TodoListBDD"));

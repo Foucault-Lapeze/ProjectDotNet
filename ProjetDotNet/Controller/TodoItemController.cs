@@ -21,13 +21,17 @@ namespace ProjetDotNet.Controller
         }
 
         // GET: api/TodoItem
+        /// <summary>
+        /// Récupérer toutes les tâches
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ToDoItem>>> GetTodoItems()
         {
             return await _context.TodoItems.ToListAsync();
         }
 
-        // GET: api/TodoItem/5
+        // GET: api/TodoItem/id
         [HttpGet("{id}")]
         public async Task<ActionResult<ToDoItem>> GetToDoItem(long id)
         {
@@ -74,6 +78,12 @@ namespace ProjetDotNet.Controller
 
         // POST: api/TodoItem
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// Sample requeset:
+        /// POST /Todo {"id": 1,"name": "Item1","isComplete": true}
+        /// </summary>
+        /// <param name="toDoItem"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<ToDoItem>> PostToDoItem(ToDoItem toDoItem)
         {
