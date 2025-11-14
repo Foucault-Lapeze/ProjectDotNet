@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using ProjetDotNet.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +8,22 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "Premier projet API en .NET",
+        Description = "Premier projet API en .NET",
+        TermsOfService = new Uri("https://google.com"),
+        Contact = new OpenApiContact
+        {
+            Name = "Foucault",
+            Email = "exemple@mail.com",
+            Url = new Uri("https://google.com"),
+        }
+    });
+});
 
 builder.Services.AddDbContext<BDDContext>(opt => opt.UseInMemoryDatabase("TodoListBDD"));
 builder.Services.AddDbContext<BDDContext>(opt => opt.UseInMemoryDatabase("VoitureListBDD"));
