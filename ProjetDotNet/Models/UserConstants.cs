@@ -6,12 +6,12 @@ public class UserConstants
     {
         new UserModel()
         {
-            Username = "jason admin", EmailAdress = "jason@mail.fr", Password = "password", GivenName = "Jason",
+            Username = "jason admin", EmailAddress = "jason@mail.fr", Password = "password", GivenName = "Jason",
             Surname = "Bryant", Role = "Administrator"
         },
         new UserModel()
         {
-            Username = "elyse", EmailAdress = "elys@mail.fr", Password = "azerty", GivenName = "Elyse",
+            Username = "elyse", EmailAddress = "elys@mail.fr", Password = "azerty", GivenName = "Elyse",
             Surname = "Bryant", Role = "Seller"
         }
     };
